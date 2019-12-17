@@ -154,7 +154,12 @@ find_field_index (MonoClass *klass, MonoClassField *field) {
 	if (index > fcount)
 		return 0;
 
-	g_assert (field == &klass_fields [index]);
+	if (field != &klass_fields[index])
+	{
+		return 0;
+	}
+
+	//g_assert (field == &klass_fields [index]);
 	return mono_class_get_first_field_idx (klass) + 1 + index;
 }
 
